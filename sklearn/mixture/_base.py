@@ -137,8 +137,11 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):
             resp = xp.zeros(
                 (n_samples, self.n_components), dtype=X.dtype, device=device
             )
+            # indices = random_state.choice(
+            #     n_samples, size=self.n_components, replace=False
+            # )
             indices = random_state.choice(
-                n_samples, size=self.n_components, replace=False
+                self.n_components, size=n_samples, replace=True
             )
             # TODO: when array API supports __setitem__ with fancy indexing we
             # can use the previous code:
